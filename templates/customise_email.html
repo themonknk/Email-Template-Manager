@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Customize Email{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Customize Your Email Template</h2>
+    <form id="customize-email-form">
+        <!-- Existing Email Editor Code -->
+
+        <h3>Set Up Follow-Up Email</h3>
+        <div class="form-group">
+            <label for="condition">Follow-Up Condition:</label>
+            <select id="condition" name="condition" class="form-control">
+                <option value="opened">Opened</option>
+                <option value="clicked">Clicked</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="followUpDelay">Follow-Up Delay (in days):</label>
+            <input type="number" class="form-control" id="followUpDelay" name="followUpDelay" min="1" required>
+        </div>
+        <div class="form-group">
+            <label for="followUpContent">Follow-Up Email Content:</label>
+            <textarea class="form-control" id="followUpContent" name="followUpContent" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save and Set Follow-Up</button>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/customize_email.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Socius{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <div class="logo">
+            <a href="/"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="Socius Logo" class="logo-image" style="width: 150px; max-height: 50px;"></a>
+        </div>
+        <nav class="user-nav">
+            <ul>
+                <li><a href="#" class="search-bar"><i class="fas fa-search"></i> Search</a></li>
+                <li><a href="#" class="notification-icon"><i class="fas fa-bell"></i></a></li>
+                <li><a href="#" class="user-icon"><i class="fas fa-user-circle"></i></a></li>
+                {% if username %}
+                    <li><a href="{{ url_for('login.logout') }}" class="btn btn-outline-light">Logout ({{ username }})</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login.login') }}" class="btn btn-outline-light">Login</a></li>
+                    <li><a href="{{ url_for('register.register') }}" class="btn btn-primary">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h4>Main Menu</h4>
+            <ul>
+                <li><a href="{{ url_for('dashboard.dashboard') }}" class="dashboard-btn active" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li>
+                    <a href="#" class="dashboard-btn"><i class="fas fa-envelope"></i> Email Campaigns</a>
+                    <ul class="submenu collapsible">
+                        <li><a href="{{ url_for('template_editor.select_template') }}" class="dashboard-btn" data-page="create_email"><i class="fas fa-plus"></i> Create Email</a></li>
+                        <li><a href="#" class="dashboard-btn" data-page="email_history"><i class="fas fa-history"></i> Email History</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="dashboard-btn" data-page="analytics"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="#" class="dashboard-btn" data-page="ab_testing"><i class="fas fa-vial"></i> A/B Testing</a></li>
+                <li><a href="#" class="dashboard-btn" data-page="scheduled_emails"><i class="fas fa-calendar-alt"></i> Scheduled Emails</a></li>
+                <li><a href="#" class="dashboard-btn" data-page="settings"><i class="fas fa-cogs"></i> Settings</a></li>
+            </ul>
+            <h4>Social Media</h4>
+            <ul>
+                <li><a href="#" class="dashboard-btn" data-page="facebook"><i class="fab fa-facebook-square"></i> Facebook</a></li>
+                <li><a href="#" class="dashboard-btn" data-page="twitter"><i class="fab fa-twitter-square"></i> Twitter</a></li>
+                <li><a href="#" class="dashboard-btn" data-page="linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <footer class="text-center py-3">
+        <p>&copy; 2024 Socius. All rights reserved.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}A/B Testing{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Create A/B Test for Email Campaign</h2>
+    <form id="ab-test-form">
+        <div class="form-group">
+            <label for="variantA">Variant A Content:</label>
+            <textarea class="form-control" id="variantA" name="variantA" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="variantB">Variant B Content:</label>
+            <textarea class="form-control" id="variantB" name="variantB" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="duration">Test Duration (days):</label>
+            <input type="number" class="form-control" id="duration" name="duration" min="1" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Create A/B Test</button>
+    </form>
+
+    <h3>A/B Test Results</h3>
+    <div id="abTestResults">Loading...</div>
+</div>
+
+<script src="{{ url_for('static', filename='js/ab_testing.js') }}"></script>
+{% endblock %}

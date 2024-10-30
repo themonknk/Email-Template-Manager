@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}File Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>File and Media Manager</h2>
+    <form id="file-upload-form" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="fileInput">Select File to Upload:</label>
+            <input type="file" class="form-control" id="fileInput" name="file">
+        </div>
+        <button type="submit" class="btn btn-primary">Upload File</button>
+    </form>
+
+    <div id="uploadStatus" class="mt-3"></div>
+
+    <h3 class="mt-4">Uploaded Files</h3>
+    <div id="uploadedFiles"></div>
+</div>
+
+<script src="{{ url_for('static', filename='js/file_manager.js') }}"></script>
+{% endblock %}

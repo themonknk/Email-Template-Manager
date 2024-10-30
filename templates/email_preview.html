@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Email Preview{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Preview Your Email Template</h2>
+    <div class="email-preview" contenteditable="true">
+        {{ email_content|safe }}
+    </div>
+    <button class="btn btn-success" onclick="saveChanges()">Save Changes</button>
+</div>
+
+<script>
+    function saveChanges() {
+        const updatedContent = document.querySelector('.email-preview').innerHTML;
+        // Logic to save updated content to the database
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Collaborative Editing{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Real-Time Collaborative Editing</h2>
+    <div id="collaborativeEditor">
+        <textarea id="sharedAnnotationInput" class="form-control" placeholder="Edit annotation..."></textarea>
+        <button class="btn btn-primary mt-2" onclick="saveAnnotation()">Save Annotation</button>
+        <div id="realTimeUpdates" class="mt-3">Live updates will appear here...</div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/collaborative_editing.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Schedule Email{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Schedule an Email</h2>
+    <form id="schedule-email-form" action="{{ url_for('schedule_email') }}" method="POST">
+        <div class="form-group">
+            <label for="recipient">Recipient Email:</label>
+            <input type="email" class="form-control" id="recipient" name="recipient" required>
+        </div>
+        <div class="form-group">
+            <label for="subject">Email Subject:</label>
+            <input type="text" class="form-control" id="subject" name="subject" required>
+        </div>
+        <div class="form-group">
+            <label for="body">Email Body:</label>
+            <textarea class="form-control" id="body" name="body" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="schedule-time">Schedule Time:</label>
+            <input type="datetime-local" class="form-control" id="schedule-time" name="schedule-time" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Schedule Email</button>
+    </form>
+</div>
+{% endblock %}

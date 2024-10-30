@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Create Template{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Create a New Email Template</h2>
+    <form id="create-template-form">
+        <div class="form-group">
+            <label for="templateName">Template Name:</label>
+            <input type="text" class="form-control" id="templateName" name="templateName" required>
+        </div>
+        <div class="editor-container" id="editor-container">
+            <div class="drag-drop-area" contenteditable="true">
+                <!-- This is where users can drag and drop content blocks -->
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Template</button>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+<script>
+    // JavaScript code to handle the drag-and-drop functionality and template creation
+    document.getElementById('create-template-form').onsubmit = async function (event) {
+        event.preventDefault();
+        const templateName = document.getElementById('templateName').value;
+        const content = document.querySelector('.drag-drop-area').innerHTML;
+        
+        const response = await fetch('/api/create_template', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: templateName, content: content })
+        });
+        
+        const result = await response.json();
+        if (response.ok) {
+            alert('Template created successfully!');
+            window.location.href = '/dashboard';
+        } else {
+            alert(result.error);
+        }
+    };
+</script>
+{% endblock %}

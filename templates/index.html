@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The most advanced email template manager for businesses.">
+    <title>Email Template Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script defer src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="top-nav">
+        <div class="container">
+            <div class="logo">
+                <a href="/"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="Socius Logo" class="logo-image"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                <li><a href="{{ url_for('auth.register') }}" class="btn-register">Register</a></li>
+                <li><a href="{{ url_for('test_login') }}" class="button">Test Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <h1>Socius - Revolutionize Your Email Marketing</h1>
+            <p>Create, customize, and send dynamic emails with AI-powered ease.</p>
+            <a href="{{ url_for('template_editor.select_template') }}" class="btn-primary">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-grid">
+        <div class="feature-box">
+            <i class="fas fa-envelope fa-3x"></i>
+            <h3>Pre-Built Templates</h3>
+            <p>Select from a library of pre-built, beautiful templates to get started quickly.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fas fa-edit fa-3x"></i>
+            <h3>Customizable Emails</h3>
+            <p>Fully customize every element of your emails to suit your brand.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fas fa-brain fa-3x"></i>
+            <h3>AI-Powered Templates</h3>
+            <p>Generate new templates dynamically using OpenAI and create personalized content.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fas fa-chart-line fa-3x"></i>
+            <h3>Advanced Analytics</h3>
+            <p>Track email performance with detailed analytics and insights to optimize strategies.</p>
+        </div>
+    </section>
+
+    <!-- Why Choose Socius Section -->
+    <section id="why-socius" class="why-socius-section">
+        <h2>Why Choose Socius?</h2>
+        <p>The ultimate tool for businesses looking to take their email marketing to the next level.</p>
+        <div class="why-socius-details">
+            <div>
+                <i class="fas fa-chart-bar"></i>
+                <h4>Advanced Analytics</h4>
+                <p>Detailed insights to optimize your email marketing strategies.</p>
+            </div>
+            <div>
+                <i class="fas fa-plug"></i>
+                <h4>Seamless Integration</h4>
+                <p>Integrate your marketing efforts with other platforms effortlessly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" class="form-control" placeholder="Your Name" required>
+            <input type="email" class="form-control" placeholder="Your Email" required>
+            <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="footer-content">
+            <p>&copy; 2024 Socius. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

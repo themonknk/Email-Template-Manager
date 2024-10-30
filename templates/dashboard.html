@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+<!-- Link to the dashboard-specific CSS -->
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container dashboard-main-container">
+    <h2 class="dashboard-title">Email Campaign Dashboard</h2>
+
+    <!-- Notifications Section -->
+    <div id="notifications" class="dashboard-notifications">
+        <h4>Notifications</h4>
+        <ul id="notificationList"></ul>
+    </div>
+
+    <!-- Filter Options Section -->
+    <div class="dashboard-filter-options">
+        <label for="dateRange">Date Range:</label>
+        <select id="dateRange" class="form-select" onchange="updateDashboardData()">
+            <option value="last7days">Last 7 Days</option>
+            <option value="last30days">Last 30 Days</option>
+            <option value="last6months">Last 6 Months</option>
+        </select>
+        <label for="campaignType">Campaign Type:</label>
+        <select id="campaignType" class="form-select" onchange="updateDashboardData()">
+            <option value="all">All</option>
+            <option value="promo">Promotional</option>
+            <option value="followup">Follow-Up</option>
+            <option value="engagement">High Engagement</option>
+            <option value="low">Low Engagement</option>
+        </select>
+    </div>
+
+    <!-- Graphs Section -->
+    <div class="row dashboard-graphs">
+        <div class="col-md-6">
+            <div class="graph-container">
+                <h4>Email Performance Overview</h4>
+                <canvas id="emailPerformanceChart"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="graph-container">
+                <h4>A/B Testing Summary</h4>
+                <canvas id="abTestSummaryChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scheduled Emails Section -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-container">
+                <h4>Scheduled Emails</h4>
+                <table class="table table-striped" id="scheduledEmailsTable">
+                    <thead>
+                        <tr>
+                            <th>Email Subject</th>
+                            <th>Recipient</th>
+                            <th>Scheduled Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity Section -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="activity-container">
+                <h4>Recent Activity</h4>
+                <div id="recentActivity"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

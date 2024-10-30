@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Collaborative Feedback{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Collaborative Feedback Loop</h2>
+    <div class="feedback-section">
+        <h4>Provide Feedback on AI Insights</h4>
+        <textarea id="collabFeedbackInput" class="form-control" placeholder="Share your feedback..."></textarea>
+        <button class="btn btn-primary mt-2" onclick="submitCollabFeedback()">Submit Feedback</button>
+        <div id="feedbackResponse" class="mt-3">Awaiting your feedback...</div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/collaborative_feedback.js') }}"></script>
+{% endblock %}
